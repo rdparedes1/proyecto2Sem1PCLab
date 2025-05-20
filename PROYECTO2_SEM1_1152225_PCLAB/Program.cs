@@ -3,13 +3,16 @@
 //TODO: Validaciones de terminar partida aparte de la rendición de un jugador (ready)
 class Program
 {
+    //Metodo main donde se inicia el programa
     static void Main(string[] args)
     {
+        //Instanciamos los objetos necesarios para el juego, de tipo Jugador y Funciones
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Funciones funciones = new Funciones();
         bool continuar = true;
         bool aceptarFlota = false;
+        //Se le da la bienvenida al jugador y se le explica el juego
         Console.WriteLine("Bienvenido al juego de Batalla Naval!");
         Console.WriteLine("El juego consiste en hundir los barcos del oponente antes de que el oponente hunda los tuyos.");
         Console.WriteLine("Cada jugador tiene 15 intentos para hundir los barcos del oponente.");
@@ -22,6 +25,7 @@ class Program
         Console.WriteLine("Presione cualquier tecla para continuar...");
         Console.ReadKey();
         Console.Clear();
+        //Generamos la flota naval de cada jugador y le mostramos el tablero de ataque
         jugador1.setFlotaNaval(funciones.generarFlotaNaval(jugador1.getFlotaNaval()));
         while (!aceptarFlota)
         {
@@ -84,6 +88,7 @@ class Program
         Console.ReadKey();
         Console.Clear();
         string opcion2;
+        //Mientras el juego no haya terminado, se alternan los turnos de los jugadores
         while (continuar)
         {
             Console.WriteLine("Turno del jugador 1:");
@@ -94,6 +99,7 @@ class Program
             opcion2 = Console.ReadLine();
             if (opcion2 == "1")
             {
+                //Llamamos al método lanzarMisil del jugador 1, pasándole como parámetro el jugador 2, para que ataque
                 jugador1.lanzarMisil(jugador2);
                 continuar = funciones.validarWin(jugador1, jugador2, 1);
             }
@@ -134,9 +140,12 @@ class Program
     }
 }
 
+//Clase de funciones donde se encuentran los métodos para mostrar el tablero, generar la flota naval y validar si hay un ganador
 class Funciones
 {
+    //Arreglo de letras para las coordenadas del tablero
     string[] letrasCoordenadas = { "A", "B", "C", "D", "E", "F" };
+    //Metodo para mostrar el tablero de ataque
     public void MostrarTablero(string[,] tablero)
     {
         Console.WriteLine("Tablero de Ataque:");
@@ -151,6 +160,7 @@ class Funciones
             Console.WriteLine();
         }
     }
+    //Metodo para mostrar la flota naval
     public void MostrarFlotaNaval(string[,] flotaNaval)
     {
         Console.WriteLine("Flota Naval:");
@@ -166,6 +176,7 @@ class Funciones
         }
     }
 
+    //Metodo para generar la flota naval de manera aleatoria
     public string[,] generarFlotaNaval(string[,] flotaNaval)
     {
         Random rnd = new Random();
@@ -251,6 +262,7 @@ class Funciones
         return flotaNaval;
     }
 
+    //Metodo para validar si hay un ganador, devuelve si continuar o no el juego
     public bool validarWin(Jugador atacante, Jugador atacado, int jugadorActual)
     {
         bool resultado;
@@ -284,6 +296,7 @@ class Funciones
     }
 }
 
+//Clase Jugador donde se encuentran los métodos para lanzar misiles, dibujar tableros y los atributos de cada jugador
 class Jugador
 {
     private int puntaje;
@@ -399,7 +412,7 @@ class Jugador
             }
             else
             {
-                //TODO: Hacer lo de verificar que no se haya atacado la misma coordenada, con el tablero de ataque del jugador actual
+                //TODO: Hacer lo de verificar que no se haya atacado la misma coordenada, con el tablero de ataque del jugador actual (ready)
                 int columna = int.Parse(ataque[2].ToString()) - 1;
                 string[,] tableroAtaque = getTableroAtaque();
                 string[,] flotaNaval = jugadorEnemigo.getFlotaNaval();
