@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "PROYECTO2_SEM1_1152225_PCLAB/1.0.0": {
+        "runtime": {
+          "PROYECTO2_SEM1_1152225_PCLAB.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PROYECTO2_SEM1_1152225_PCLAB/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
